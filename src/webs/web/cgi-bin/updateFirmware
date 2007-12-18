@@ -1,0 +1,167 @@
+#! /bin/sh
+
+# Close standard input by respawning ourselves 
+if [ -z "$SECOND_EXEC" ]; then
+	SECOND_EXEC=1
+	export SECOND_EXEC
+	exec $0 <&-
+fi
+
+CGIDIR=`pwd`
+UPGDIR=/tmp/upg
+TARBALL=${UPGDIR}/firmware-tarball
+
+echo "Content-type: text/html"
+echo ""
+echo "<HTML>"
+echo "<HEAD>"
+echo "<TITLE>Albatross</TITLE>"
+echo "<link rel='stylesheet' type='text/css' href='/styles.css'>"
+echo "</HEAD>"
+
+Error ()
+{
+    echo "<p class=normaltext style='margin-top:0;padding-top:0;'>"
+    echo "<font color=red><b>"
+    echo "$*"
+    echo "</b></font></p>"
+    echo "</BODY>"
+    echo "</HTML>"
+    cd ${CGIDIR}
+    rm -rf ${UPGDIR}
+    exec false
+}
+
+if [ -z "${EXEC_UPDATE}" ]; then
+
+    # FETCH UPDATE
+
+    rm -rf ${UPGDIR}
+    mkdir -p ${UPGDIR}
+
+    echo "<BODY topmargin=4 leftmargin=4>"
+    echo "<div class=title>System&nbsp;Tools</div><hr>"
+    echo "<div class=title><b>Firmware Update - Acknowledge</b></div><hr>"
+
+    . /etc/sysconfig/albatross/global
+    . /etc/sysconfig/albatross/version
+
+    echo "<table border=0>"
+    echo "<tr><td>Model:</td><td><b>${MODEL}</b></td></tr>"
+    echo "<tr><td>Version:</td><td><b>${VERSION}</b></td></tr>"
+    echo "<tr><td>Serial Number</td><td><b>${SERIALNO}</b></td></tr>"
+    echo "<tr><td>UUID:</td><td><b>${UUID}</b></td></tr>"
+    echo "<tr><td>Number of Ports:&nbsp;</td><td><b>${PORTS}</b></td></tr>"
+    echo "<tr><td>Licensed Ports:</td><td><b>${LICENSE}</b></td></tr>"
+    echo "</table>"
+    echo "<hr>"
+
+    cd ${UPGDIR}
+    [ "$?" -ne 0 ] && Error "Failed to create temporary directory for update."
+
+    if [ -z "${SRC}" -o -z "${DESC}" ]; then
+
+        # We expect to be called from webs in response to POST form-data
+        if [ -n "${PATH_STDIN}" -a -f "${PATH_STDIN}" ]; then
+
+            DESC=`${CGIDIR}/getTarball ${PATH_STDIN}`
+            [ "$?" -ne 0 ] && Error "Extracting tarball from form-data failed.<br>${DESC}"
+
+            mv ${PATH_STDIN} ${TARBALL}
+            [ "$?" -ne 0 ] && Error "Failed to move ${PATH_STDIN}."
+
+        else
+            Error "Not called properly -- Missing PATH_STDIN."
+        fi
+
+    elif [ "${TYPE}" = "uue" ]; then
+
+        echo "<font class=normaltext>Retrieving ${DESC}...</font>"
+        wget -q -O - "${SRC}" | uudecode -o ${TARBALL}
+        [ "$?" -ne 0 ] && Error "Failed to retrieve ${SRC}"
+        echo "<font class=normaltext>Done.</font><hr>"
+
+    elif [ "${TYPE}" = "tgz" ]; then
+
+        echo "<font class=normaltext>Retrieving ${DESC}...</font>"
+        wget -q -O ${TARBALL} "${SRC}"
+        [ "$?" -ne 0 ] && Error "Failed to retrieve 2>1 ${SRC}"
+        echo "<font class=normaltext>Done.</font><hr>"
+
+    else
+        Error "Unrecognized type of update."
+    fi
+
+    echo "<font class=normaltext>The following tarball will be used for update:</font><br>"
+
+    echo "<ul class=normaltext><li>"
+    if [ -n "${DESC}" ]; then
+        echo "<b>${DESC}</b>, Size: `ls -al ${TARBALL} | awk '{print $5}'` bytes"
+    else
+        echo "File: <b>`basename ${TARBALL}`</b>, Size: `ls -al ${TARBALL} | awk '{print $5}'` bytes"
+    fi
+    echo "</li></ul>"
+
+    echo "<form action='/cgi-bin/updateFirmware' name=form1 method=GET>"
+    echo "<input type=hidden name=EXEC_UPDATE value=YES>"
+    echo "<input type=hidden name=DESC value=\"$DESC\">"
+    echo "<input type=submit id=submit name=OK value=' Install Update '>"
+    echo "</form>"
+
+    echo "</BODY>"
+    echo "</HTML>"
+else
+
+    # INSTALL UPDATE
+
+    cd ${UPGDIR}
+    [ "$?" -ne 0 ] && Error "Could set temporary directory used for update."
+
+    echo "<BODY topmargin=4 leftmargin=4>"
+    echo "<div class=title>System&nbsp;Tools</div><hr>"
+    echo "<div class=title><b>Firmware Update - Install</b></div><hr>"
+
+    . /etc/sysconfig/albatross/global
+    . /etc/sysconfig/albatross/version
+
+    echo "<table border=0>"
+    echo "<tr><td>Model:</td><td><b>${MODEL}</b></td></tr>"
+    echo "<tr><td>Version:</td><td><b>${VERSION}</b></td></tr>"
+    echo "<tr><td>Serial Number</td><td><b>${SERIALNO}</b></td></tr>"
+    echo "<tr><td>UUID:</td><td><b>${UUID}</b></td></tr>"
+    echo "<tr><td>Number of Ports:&nbsp;</td><td><b>${PORTS}</b></td></tr>"
+    echo "<tr><td>Licensed Ports:</td><td><b>${LICENSE}</b></td></tr>"
+    echo "</table>"
+    echo "<hr>"
+
+    echo "<font class=normaltext color=darkblue><b>Installing ${DESC}:</b></font><br>"
+    echo "<font class=normaltext color=blue>Please, do not power off or reset device, or navigate from this page until installation has been completed!</font><br><br>"
+
+    rm -rf .dex28-*
+
+    echo "<font class=normaltext>`date "+%Y-%m-%d %H:%M:%S"`: Checking archive sanity...</font><br>"
+
+    [ -f "${TARBALL}" ] || Error "Archive ${DESC} is missing."
+
+    tar xzf ${TARBALL} .dex28-firmware .dex28-control
+    [ "$?" -ne 0 ] && Error "Archive ${DESC} does not contain DEX28 firmware update."
+
+    [ -x ./.dex28-control ] || Error "Archive ${DESC} does not contain DEX28 firmware update."
+
+    ###########################################################################
+    ./.dex28-control ${TARBALL}
+    RETVAL=$?
+    ###########################################################################
+
+    # Clean-up ${UPGDIR}
+
+    cd ${CGIDIR}
+    rm -rf ${UPGDIR}
+
+    [ "${RETVAL}" -ne 0 ] && Error "Firmware update failed."
+
+    echo "</BODY>"
+    echo "</HTML>"
+fi
+
+exit 0

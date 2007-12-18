@@ -1,0 +1,112 @@
+#! /bin/sh
+echo "content-type: text/html"
+echo ""
+echo "<html>"
+echo "<head>"
+echo "<link rel=stylesheet type=text/css href=../styles.css>"
+echo "<title>Albatross</title>"
+echo "<META http-equiv=pragma content=no cache>"
+echo "<META http-equiv='Expires' content=0>"
+echo "</head>"
+echo "<body bgColor=#ffffff text=#000000 link=#ffdd00 alink=#ffdd00 vlink=#ffdd00 leftmargin=12 rightmargin=12 topmargin=0 marginwidth=12 marginheight=0>"
+echo "<table cellpadding=2 cellspacing=0 border=0 width=100%>"
+echo "<tr><td width=100% class=title nowrap=true>System&nbsp;Tools</td></tr>"
+
+if [ "$function" = "reboot" ]
+then
+    echo "<td>Device is rebooting. Webserver will not respond during reboot. Click on <a href="/secure/home.asp" target=_top>Status</a> after one minute.</td></tr>"
+
+elif [ "$function" = "shutdown" ]
+then
+    echo "<tr><td>Shutting down Albatross...<br>The webserver will not work untill you reset or cycle power off/on the device.</td></tr>"
+
+elif [ "$function" = "reload" ]
+then
+    echo "<tr><td>Reloading DSPs...</td></tr>"
+
+elif [ "$function" = "killidod" ]
+then
+    echo "<tr><td>Killing connections...</td></tr>"
+elif [ "$function" = "purgelog" ]
+then
+    echo "<tr><td>Purging Log and Temp Files...</td></tr>"
+
+fi
+
+echo "<tr><td>&nbsp;</td></tr>"
+echo "<tr><td>Go back to <a href=/secure/SysTools/SysTools1.asp>System&nbsp;Tools</a></td></tr>"
+echo "</table>"
+
+echo "<pre>"
+
+if [ "$function" = "reboot" ]
+then
+    ( sleep 2; /sbin/reboot ) &
+
+elif [ "$function" = "shutdown" ]
+then
+    ( sleep 2; /sbin/shutdown -h now ) &
+
+elif [ "$function" = "reload" ]
+then
+    service c54load stop
+    sleep 1
+    service c54load status 
+    sleep 1
+    service c54load status 
+    sleep 1
+    service c54load start
+    sleep 1
+    service c54load status 
+elif [ "$function" = "killdsp" ]
+then
+    service c54load stop
+    sleep 1
+    service c54load status 
+    sleep 1
+    service c54load status 
+    sleep 1
+    service c54load start
+    sleep 1
+    service c54load status 
+elif [ "$function" = "killidod" ]
+then
+    killall idod
+    killall idodMaster
+    killall idodVR
+elif [ "$function" = "purgelog" ]
+then
+
+    # remove all webs temp cgi files except our stdin & stdout
+
+    X1=`readlink /proc/$$/fd/0`
+    X1=`basename $X1`
+    X2=`readlink /proc/$$/fd/1`
+    X2=`basename $X2`
+
+    for x in /tmp/websCgi*; do
+        b=`basename $x`
+        if [ "$b" != "$X1" -a "$b" != "$X2" ]; then
+            echo "Removing $b"
+            rm -rf $x
+        fi
+    done
+
+    rm -rf /tmp/upg
+    rm -rf /tmp/etc
+
+    # remove old (circular) log files
+
+    rm -rf /var/log/*.1
+    rm -rf /var/log/*.2
+    rm -rf /var/log/*.3
+    rm -rf /var/log/*.4
+
+fi
+
+echo "<font color=#800000><b>Done.</b></font>"
+echo "</pre>"
+
+echo "</body>"
+echo "</html>"
+

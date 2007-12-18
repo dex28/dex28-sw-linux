@@ -1,0 +1,58 @@
+#! /bin/sh
+echo "content-type: text/html"
+echo ""
+echo "<HTML>"
+echo "<head>"
+echo "<TITLE>Update status</TITLE>"
+echo "<link rel=stylesheet sel=text/css href=/styles.css>"
+echo "</head>"
+
+echo "<BODY topmargin=4 leftmargin=4>"
+echo "<div class=title>System&nbsp;Tools</div><hr>"
+echo "<div class=title><b>Firmware Update - On-Line List</b></div><hr>"
+
+
+. /etc/sysconfig/albatross/version
+. /etc/sysconfig/albatross/global
+
+#echo "<font style='font-size:16;'>${WEBTITLE1}</font>"
+#echo "<p>"
+
+# take first word from proxy
+for x in ${proxy}; do
+    proxy="$x"
+    break;
+done
+
+echo "<table border=0>"
+echo "<tr><td>Model:</td><td><b>${MODEL}</b></td></tr>"
+echo "<tr><td>Version:</td><td><b>${VERSION}</b></td></tr>"
+echo "<tr><td>Serial Number</td><td><b>${SERIALNO}</b></td></tr>"
+echo "<tr><td>UUID:</td><td><b>${UUID}</b></td></tr>"
+echo "<tr><td>Number of Ports:&nbsp;</td><td><b>${PORTS}</b></td></tr>"
+echo "<tr><td>Licensed Ports:</td><td><b>${LICENSE}</b></td></tr>"
+echo "</table>"
+
+for generic in ${MODEL}; do
+    URL="http://www.iptc.se/support/${generic}-update-list.html"
+    if [ -n "$proxy" ]; then
+        http_proxy="http://$proxy" wget -q -O - $URL 
+        rc=$?
+    else
+        wget -q -O - $URL 
+        rc=$?
+    fi
+    break;
+done
+
+if [ "$rc" != "0" ]; then
+    echo "<p class=normaltext><font color=red>Could not get list of firmware updates<br>from <b>$URL</b>"
+    if [ -n "$proxy" ]; then
+        echo "<br>using Proxy server <b>http://${proxy}</b>"
+    fi
+    echo "</font><p>"
+fi
+
+echo "</BODY>"
+echo "</HTML>"
+

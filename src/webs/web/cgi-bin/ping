@@ -1,0 +1,93 @@
+#! /bin/sh
+
+echo "content-type: text/html"
+echo ""
+echo "<html>"
+echo "<head>"
+echo "<link rel=stylesheet type=text/css href=/styles.css>"
+echo "<title>System Tools</title>"
+echo "</head>"
+
+echo "<body bgcolor=#ffffff text=#000000 leftmargin=4 rightmargin=4 topmargin=0 marginwidth=4 marginheight=0>"
+
+if [ -z "$ipaddress" ]
+then
+     echo "Empty ipaddress..."
+     echo "</body></html>"
+     exit 0
+fi
+
+echo "<form name=Form1 action=/cgi-bin/ping method=GET>"
+echo "<table cellpadding= 2cellspacing=2 border=0 width=100%>"
+echo "<thead class=title>System Tools</thead>"
+
+if [ -n "$ping" ]
+then
+    echo "<tr><td class=title><b>Pinging $ipaddress...</b></td></tr>"
+elif [ -n "$arping" ]
+then
+    echo "<tr><td class=title><b>Trace Route to $ipaddress...</b></td></tr>"
+elif [ -n "$tracert" ]
+then
+    echo "<tr><td class=title><b>Trace Route to $ipaddress...</b></td></tr>"
+fi
+
+echo "<tr><td>&nbsp;</td></tr>"
+
+echo "<tr><td>"
+echo "<input type=text name=ipaddress value='$ipaddress'>&nbsp;"
+
+if [ -n "$ping" ]
+then
+    echo "<input type=submit name=ping value=' Ping '>"
+elif [ -n "$arping" ]
+then
+    echo "<input type=submit name=arping value=' ARP Ping '>"
+elif [ -n "$tracert" ]
+then
+    echo "<input type=submit name=tracert value=' Trace Route '>"
+fi
+
+echo "&nbsp;<input type=reset name=reset value=' Reset '>"
+
+echo "&nbsp;<input type=submit name=goback value=' Go Back ' onclick='Form1.action=\"/secure/SysTools/SysTools3.asp\";'>"
+echo "<input type=hidden name=nameserver value='$nameserver'>"
+echo "</td></tr>"
+
+echo "</table>"
+echo "</form>"
+
+echo "<pre style='padding:4px'>"
+
+if [ -n "$nameserver" ]
+then 
+    NSFLAG=
+else
+    NSFLAG=-n
+fi
+
+if [ -n "$ipaddress" ]
+then
+    if [ -n "$ping" ]  
+    then
+        if [ `uname -m` = "armv4tl" ]; then
+            ping -c 4 $ipaddress 2>&1
+        else
+            ping $NSFLAG -c 4 -w 6 $ipaddress 2>&1
+        fi
+    elif [ -n "$arping" ]  
+    then
+        arping -c 4 $ipaddress 2>&1
+    elif [ -n "$tracert" ]  
+    then
+        if [ `uname -m` = "armv4tl" ]; then
+            traceroute $NSFLAG $ipaddress 2>&1
+        else
+            tracepath $NSFLAG $ipaddress 2>&1
+        fi
+    fi
+fi
+echo "<font color=red><b>Done.</b></font>"
+echo "</pre>"
+echo "</body>"
+echo "</html>"

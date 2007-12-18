@@ -1,0 +1,99 @@
+<HTML>
+<HEAD>
+<title>Help System</title>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">	
+<link rel="stylesheet" sel="text/css" href="/styles.css">
+<script src="/doc/help.js"></script>
+</head>
+
+<body topmargin=8 onload="cxtitle('Log Files');">
+
+<h3 id="messages">Messages Log</h3>
+<p class=normaltext>
+	Page shows general information about working serwer. If error appears you can see it at this window.
+<ul class=normaltext>
+
+
+	</li>
+</ul>
+
+<h3 id="security">Security Log</h3>
+<p class=normaltext>
+	Page contains information about login attemps, failures, bad authentications etc. 
+
+<h3 id="transfer">Transfer Log</h3>
+<p class=normaltext>
+	The page contains last 40 logging information from the FTP server daemon such as: 
+<ul class=normaltext>
+	
+	<li><B>Current-time</B> - Is the current local time in the form "DDD  MMM  dd hh:mm:ss  YYYY".
+			Where DDD is the day of the week,MMM is the month, dd is the day of the month, hh is the hour, mm is the minutes, ss is 
+			the seconds, and YYYY is the year.
+	</li>
+	<li><B>Transfer-time</B> - Is the total time in seconds for the transfer.
+	</li>
+	<li><B>Remote-host</B> - Is the remote host name.</li>
+	<li><B>File-size</B> - Is the size of the transferred file in bytes.</li>
+	<li><B>Filename</B> - Is the name of the transferred file.</li>
+	<li><B>Transfer-type</B> - Is a single character indicating the type of trans-fer. 
+								  <ul>Can be one of:
+								  <li><B>a</B> - for an ascii transfer</li>
+                                  <li><B>b</B> - for a binary transfer</li>
+								  </ul>
+	</li>
+	<li><B>Special-action-flag</B> - Is  one  or  more single character flags indicating
+                           any special action taken.  
+								  <ul>Can be one or more of:
+                                  <li><B>C</B> - file was compressed</li>
+                                  <li><B>U</B> - file was uncompressed</li>
+                                  <li><B>T</B> - file was tar'ed</li>
+                                  <li><B>_</B> - no action was taken</li>
+								  </ul>
+	</li>
+	<li><B>Direction</B> - Is the direction of the transfer. 
+								  <ul>Can be one of:
+                                  <li><B>o</B> - outgoing</li>
+                                  <li><B>i</B> - incoming</li>
+                                  <li><B>d</B> - deleted</li>
+								  </ul>
+	</li>
+	<li><B>Access-mode</B> - Is the method by which the user is logged  in.  
+								  <ul>Can be one of:
+                                  <li><B>a</B> - (anonymous)  is  for  an anonymous guest user.</li>
+                                  <li><B>r</B> - (real) is for  a  local  authenti-cated user.</li>
+								  </ul>
+	</li>
+	<li><B>Username</B> - Is  the  local username, or if guest, the ID string
+	</li>
+	<li><B>Authenticated-user-id</B> - Is the  user  id  returned  by  the  authentication
+                     method.  A * is used if an authenticated user id is not available.
+	</li>
+	<li><B>Completion-status</B> - Is a single character indicating the status of  the transfer.  
+								  <ul>Can be one of:
+                                  <li><B>c</B> - complete transfer</li>
+                                  <li><B>i</B> - incomplete transfer</li>
+								  </ul>
+	 </li>
+</ul>
+
+<h3 id="logins">Login History</h3>
+<p class=normaltext>
+	Page shows general information about login history (40 lines), such as:
+<ul class=normaltext>
+
+	<li><B>Username</B> - Is  the  local username, or if guest, the ID string</li>
+	<li><B>TTY</B> - The TTY column shows which terminal user used to log on.</li>
+	<li><B>FROM</B> - Shows address form user has logged on.</li>
+    <li><B>Data of loging</B> - Is the time in the form "DDD  MMM  dd ".
+			Where DDD is the day of the week, MMM is the month, dd is the day of the month.</li>
+	<li><B>Time of loging in</B> - Time when user has logged in. Form: "hh:mm"</li>
+	<li><B>Time of loging out</B> - Time when user has logged out. Form: "hh:mm" or "still".</li>
+	<li><B>Total time</B> - Time when user was loging in.</li>
+</ul>
+
+<h3 id="boot">Boot Log</h3>
+<p class=normaltext>
+	Page shows information about starting, updating and changing system.
+
+</body>
+</html>

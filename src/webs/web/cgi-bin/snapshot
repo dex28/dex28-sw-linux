@@ -1,0 +1,103 @@
+#! /bin/sh
+
+TSTAMP=`date +%Y%m%d%H%M%S`
+UNAME=`uname -m`
+
+echo "Content-type: application/x-gzip-compressed"
+if [ "$UNAME" = "armv4tl" ]; then
+    echo "Content-Disposition: attachment;filename=\"DEX28-Snapshot_$TSTAMP.tgz\""
+else
+    echo "Content-Disposition: attachment;filename=\"DEX28-Snapshot_$TSTAMP.tgz\""
+fi
+echo ""
+
+# Create runtime snapshot
+
+RT=/var/log/RUNTIME
+
+rm -rf $RT
+
+echo >>$RT
+echo "-----------------------------------------------------------" >>$RT
+echo "DEX28 Runtime Snapshot" >>$RT
+echo >>$RT
+date >>$RT
+
+echo >>$RT
+echo "-----------------------------------------------------------" >>$RT
+echo "Process Status" >>$RT
+echo >>$RT
+ps -edaf >>$RT
+
+echo >>$RT
+echo "-----------------------------------------------------------" >>$RT
+echo "Memory Info" >>$RT
+echo >>$RT
+fwMemFree >>$RT
+echo >>$RT
+echo "/proc/meminfo:" >>$RT
+cat /proc/meminfo >>$RT
+
+echo >>$RT
+echo "-----------------------------------------------------------" >>$RT
+echo "Disk Usage" >>$RT
+echo >>$RT
+df -k >>$RT
+echo >>$RT
+echo "/proc/mounts:" >>$RT
+echo >>$RT
+cat /proc/mounts >>$RT
+echo >>$RT
+echo "/proc/yaffs:" >>$RT
+echo >>$RT
+cat /proc/yaffs >>$RT
+
+echo >>$RT
+echo "-----------------------------------------------------------" >>$RT
+echo "Network Status" >>$RT
+echo >>$RT
+/sbin/ifconfig >>$RT
+echo >>$RT
+echo "/proc/net/vlan/config:" >>$RT
+echo >>$RT
+cat /proc/net/vlan/config >>$RT
+echo >>$RT
+echo "/proc/net/vlan/eth0.\*:" >>$RT
+echo >>$RT
+( for x in /proc/net/vlan/eth0.*; do [ -f $x ] && cat $x; done ) >>$RT
+echo >>$RT
+echo "netstat -rn:" >>$RT
+echo >>$RT
+/bin/netstat -rn >>$RT
+echo >>$RT
+echo "netstat -tun:" >>$RT
+echo >>$RT
+/bin/netstat -tun >>$RT
+
+echo >>$RT
+echo "-----------------------------------------------------------" >>$RT
+echo "CPU Info" >>$RT
+echo >>$RT
+cat /proc/cpuinfo >>$RT
+
+echo "-----------------------------------------------------------" >>$RT
+date >>$RT
+
+# Download etc & var/log snapshot
+
+if [ "$UNAME" = "armv4tl" ]; then
+    ( cd /; tar cT /dev/stdin <<-EOF | gzip -9 );
+etc
+var/log
+EOF
+
+else
+
+    ( cd /; tar cT - <<-EOF | gzip -9 );
+etc
+var/log
+EOF
+
+fi
+
+rm -rf $RT

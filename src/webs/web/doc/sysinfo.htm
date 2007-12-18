@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+<title>System Information</title>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">	
+<link rel="stylesheet" sel="text/css" href="/styles.css">
+<script src="/doc/help.js"></script>
+</head>
+
+<body topmargin=8 onload="cxtitle('System Information');">
+
+<h3 id="gen">General Information</h3>
+<p class=normaltext>
+Page shows general information about device, such as:
+<ul class=normaltext>
+<li>Model (including hardware release)</li>
+<li>Software Version</li>
+<li>Serial Number</li>
+<li>Unique Unit Identifier</li>
+<li>Number of VoIP Ports available</li>
+<li>Number of Licensed VoIP Ports</li>
+<li>Modeof Operation (Switch Side (GW) Unit or Extension Side (EX) Unit)</li>
+</ul>
+
+</li>
+</ul>
+
+<h3 id="cpu">CPU Information</h3>
+<p class=normaltext>
+This page shows information about processes, jobs and programs which are currently running on the server.
+<ul class=normaltext>
+<li><b>UID</b> - UID column shows who started and owns the process.</li>
+<li><b>PID</b> - PID means process identification number.</li>
+<li><b>PPID</b> - The PPID (Parent Process ID) column shows which process started that particular 
+	process.</li>
+<li><b>C</b> - CPU ID</li>
+<li><b>STIME</b> - system time</li>
+<li><b>TTY</b> - The TTY column shows which terminal the process was started from.</li>
+<li><b>TIME</b> - The TIME column shows the total amount of system (CPU) time used by the process 
+	so far.</li>
+<li><b>CMD</b> - Command which run the process.</li>
+</ul>
+
+<h3 id="memory">Memory</h3>
+<p class=normaltext>
+This page shows the total amount of memory, free memory and used (both physical and swapped)
+memory in the system, as well as the buffers used by the kernel.
+<ul class=normaltext>
+<li><b>Total</b> - Amount of total swapped space</li>
+<li><b>Used</b> - Amount of swapped space used</li>
+<li><b>Free</b> - Amount of swapped space free</li>
+<li><b>Shared</b> - Shared memory. A portion of memory capable of being accessed by more than 
+	one application at a time.</li>
+<li><b>Buffers</b> - Buffers used by the kernel. Temporary storage in memory used to temporarily 
+	store information while other information is being processed.</li>
+<li><b>Cached</b> - Memory cache is a portion on memory of high-speed static RAM. It is
+effective because most programs access the same data or instructions over and over.</li>
+</ul>
+
+<h3 id="disk">Disk</h3>
+<p class=normaltext>
+	This page shows the amount of disk space used by the specified files, and by each directory in 
+	the hierarchies rooted at the specified files.
+<ul class=normaltext>
+<li><b>Filesystem</b> - Refers to the parts of the entire hierarchy of directories.</li>
+<li><b>1K-blocks</b> - Number of 1K-blocks.</li>
+<li><b>Used</b> - Blocks in use.</li>
+<li><b>Available</b> - Shows free space on root partition.</li>
+<li><b>Use%</b> - Using total disk capacity percent (%).</li>
+<li><b>Mounted on</b> - The column of the name of the mount.</li>
+</ul>
+
+<h3 id="users">Users</h3>
+<p class=normaltext>
+	Page shows information about the users currently logged on the machine, and their proccesses. The red 
+	header shows, in this order, the current time, how long the system has been running, how many 
+	users currently logged on, and the system load averages for the past 1, 5, and 15 minutes.
+<ul class=normaltext>
+<li><b>User</b> - Shows users which are logged on.</li>
+<li><b>TTY</b> - The TTY column shows from which terminal the process was started from.</li>
+<li><b>FROM</b> - Shows address form user has logged on.</li>
+<li><b>LOGIN@</b> - Time of initial login.</li>
+<li><b>IDLE</b> - The IDLE column shows the time that the computer or device has been powered on but has 
+	not been used.</li>
+<li><b>JCPU</b> - The JCPU shoes the time used by all processes attached to the respective TTY.</li>
+<li><b>PCPU</b> - The PCPU shows the time used by the current procsses, named in the "WHAT" field.</li>
+<li><b>WHAT</b> - The WHAT column shows names of current processes.</li>
+</ul>
+
+<h3 id="net">Network Information</h3>
+<p class=normaltext>
+	Page shows information about Network Status.
+<ul class=normaltext>
+<li><b>Kernel Interface table</b> - Shows statistics for the network interfaces currently configured.
+		<ul>
+			<li><b>Iface</b> - Network interface.</li>
+			<li><b>MTU</b> - Shows the current MTU.</li>	
+			<li><b>Met</b> - Shows numeric value of MTU interface.</li>	
+			<li><b>RX-OK</b> - Shows how many packets have been received error free.</li>
+			<li><b>RX-ERR</b> - Shows how many received packets have been damaged.</li>
+			<li><b>RX-DRP</b> - Shows how many received packets have been dropped.</li>
+			<li><b>RX-OVR</b> - Shows how many received packets were lost because of overrun.</li>
+			<li><b>RX-OK</b> - Shows how many packets have been transmitted error free.</li>
+			<li><b>RX-ERR</b> - Shows how many transmitted packets have been damaged.</li>
+			<li><b>RX-DRP</b> - Shows how many transmitted packets have been dropped.</li>
+			<li><b>RX-OVR</b> - Shows how many transmitted packets were lost because of overrun.</li>
+			<li><b>Flg</b> - Shows the flags that have been set for this interface.</li>
+			<ul>
+				<li><b>B</b> - A broadcast address has been set.</li>
+				<li><b>L</b> - This interface is a loopback device.</li>
+				<li><b>M</b> - All packets are received (promiscuous mode).</li>
+				<li><b>N</b> - Trailers are avoided.</li>
+				<li><b>O</b> - ARP is turned off for this interface.</li>
+				<li><b>P</b> - This is a point-to-point connection.</li>
+				<li><b>R</b> - Interface is running.</li>
+				<li><b>U</b> - Interface is up.</li>
+			</ul>
+		</ul>
+</li>
+
+<li><b>Displays the status of the currently active interfaces.</b></li>
+
+<li><b>Kernel IP routing table</b> - Displays the kernel routing table and shows numerical addresses.
+		<ul>
+			<li><b>Destination</b> - The destination network or destination host.</li>
+			<li><b>Gateway</b> - Shows the gateway the routing entry points to. If no gateway is 
+				used, an asterisk is printed instead.</li>
+			<li><b>Genmask</b> - Shows the "generality" of the route.</li>	
+			<li><b>Flags</b> - Shows various flags that describe the route.</li>
+					<ul>
+					<li><b>G</b> - The route uses a gateway.</li>
+					<li><b>U</b> - The interface to be used is up.</li>
+					<li><b>H</b> - Only a single host can be reached through the route.</li>
+					<li><b>D</b> - This is set if the table entry has been generated y an ICMP 
+						redirect message.</li>
+					<li><b>M</b> - This is set if the table entry was modified by an ICMP redirect 
+						message.</li>
+					</ul>
+			<li><b>MSS</b> - Default maximum segement size  for  TCP  connections  over  this route.</li>
+			<li><b>Window</b> - Default window size for TCP connections over this route.</li>
+			<li><b>irtt</b> - Initial  RTT  (Round  Trip  Time). The kernel uses this to guess about the 
+				best TCP protocol parameters without waiting on (possibly slow) answers.</li>
+			<li><b>Iface</b> - Network interface.</li>		
+		</ul>
+</li>
+
+<li><b>Active Internet connections (w/o servers) - Shows active TCP and UDP, and numerical addresses.</b>
+		<ul>
+			<li><b>Proto</b> - Using protocol.</li>
+			<li><b>Recv-Q</b> - The count of bytes not copied by the user program connected to this 
+				socket.</li>
+			<li><b>Send-Q</b> - The count of bytes not acknowledged by the remote host.</li>	
+			<li><b>Local Address</b> - Address and port number of the local end of the socket.</li>	
+			<li><b>Foregin Address</b> - Address and port number of remote end of the socket.</li>
+			<li><b>State</b> - The state of the socket.</li>
+			<ul>
+				<li><b>ESTABLISHED</b> - The socket has an established connection.</li>
+				<li><b>SYN_SENT</b> - The socket is actively attempting to establish a connection.</li>
+				<li><b>SYN_RECV</b> - A connection request has been received from the network.</li>
+				<li><b>FIN_WAIT1</b> - The socket is closed, and the connection is shutting down.</li>
+				<li><b>FIN_WAIT2</b> - Connection is closed, and the socket is waiting for a shutdown 
+					from the remote end.</li>
+				<li><b>TIME_WAIT</b> - The socket is waiting after close to handle packets still in 
+					the network.</li>
+				<li><b>CLOSED</b> - The socket is not being used.</li>
+				<li><b>CLOSE_WAIT</b> - The remote end has shut down, waiting for the socket to close.</li>
+				<li><b>LAST_ACK</b> - The remote end has shut down, and the socket is closed. Waiting 
+					for acknowledgement.</li>
+				<li><b>LISTEN</b> - The socket is listening for incoming connections.</li>	
+				<li><b>CLOSING</b> - Both sockets are shut down but we still don't have all our 
+					data sent.</li>
+				<li><b>UNKNOWN</b> - The state of the socket is unknown.</li>
+			</ul>
+		</ul>
+</li>
+
+<li><b>Shows an ARP table.</b>
+		<ul>
+			<li><b>Address</b> - The IP address to be assigned to the interface.</li>		
+			<li><b>HWtype</b> - Hardware type.</li>
+			<li><b>HWaddress</b> - Hardwaer address.</li>	
+			<li><b>Flags</b> - C or CMP is possible.</li>
+			<li><b>Mask</b> - If it's set refers to the subnet mask.</li>	
+			<li><b>Iface</b> - Network interface.</li>		
+		</ul>
+</li> 
+</ul>
+
+<h3 id="kernel">Kernel Information</h3>
+<p class=normaltext>
+Page shows general Kernel information, as follows:
+<ul class=normaltext>
+<li><b>Version</b> - Information about operating system version.</li>
+<li><b>CPU Information</b> - Information about CPU.</li>
+<li><b>Memory Information</b> - memory associated information</li>
+</ul>
+</body>
+</html>

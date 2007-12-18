@@ -1,0 +1,16 @@
+
+idod: idod.o MD5.o Rand48.o
+	g++ -o idod idod.o MD5.o Rand48.o
+	cp idod /pub/CF/albatros
+
+idod.o: idod.cpp
+	g++ -O3 -c idod.cpp
+
+MD5.o : MD5.cpp MD5.h
+	g++ -O3 -c MD5.cpp
+
+Rand48.o : Rand48.cpp Rand48.h
+	g++ -O3 -c Rand48.cpp
+
+clean :
+	rm *.o

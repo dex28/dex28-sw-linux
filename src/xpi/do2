@@ -1,0 +1,4 @@
+
+	 arm-linux-gcc -O3 -o idox idox.cpp
+	 arm-linux-gcc -O3 -o idom idom.cpp
+

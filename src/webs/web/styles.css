@@ -1,0 +1,106 @@
+BODY
+{
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif
+    FONT-SIZE: 10pt
+}
+A
+{
+    COLOR: #0033cc
+}
+A:visited
+{
+    COLOR: #0033cc
+}
+A:hover
+{
+    COLOR: #cd1010
+}
+PRE
+{
+    FONT-SIZE: 10pt
+}
+TD
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10pt
+}
+.title
+{
+    COLOR: #000090;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 14pt
+}
+.header
+{
+    COLOR: #006699;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 14pt
+}
+.newsHeader
+{
+    BACKGROUND-COLOR: #ffcc00;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 12pt;
+    FONT-WEIGHT: bold
+}
+.newsHeader2
+{
+    BACKGROUND-COLOR: #ffee00;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold
+}
+.news
+{
+    BACKGROUND-COLOR: #f1f1f1;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt;
+    LINE-HEIGHT: normal
+}
+.smallheader
+{
+    COLOR: #000090;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 12pt
+}
+.small
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt
+}
+.small2
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt
+}
+.menutop
+{
+    COLOR: #0033cc;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt
+}
+.menui
+{
+    COLOR: #FFFFFF;
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10pt
+}
+.normalText
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 10pt;
+}
+.smallText
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+}
+.fineprint
+{
+    FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 8pt
+}

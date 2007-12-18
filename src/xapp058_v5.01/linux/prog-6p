@@ -1,0 +1,4 @@
+clear
+./playxsvf ge6p-p1.xsvf
+./playxsvf ge6p-p2.xsvf
+./playxsvf ge6p-p3.xsvf

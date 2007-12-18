@@ -1,0 +1,9 @@
+TABLE=users
+TABLE=groups
+ROW=0
+name=test
+priv=4
+method=3
+prot=0
+disable=0
+TABLE=access

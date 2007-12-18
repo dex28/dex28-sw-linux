@@ -1,0 +1,66 @@
+A:link          { color: #000080; text-decoration: none; }
+A:visited       { color: #800000; text-decoration: none; }
+A:active        { color: #000080; text-decoration: none; }
+A:hover         { color: #0000F0; text-decoration: underline; }
+
+li   { font-family: verdana,arial,sans-serif; font-size: 12px; }
+ol   { font-family: verdana,arial,sans-serif; font-size: 12px; }
+ul   { font-family: verdana,arial,sans-serif; font-size: 12px; }
+p    { font-family: verdana,arial,sans-serif; font-size: 12px; }
+td   { font-family: verdana,arial,sans-serif; font-size: 12px; }
+body { font-family: verdana,arial,sans-serif; font-size: 12px; }
+
+h2 { font-family: verdana,arial,sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    }
+
+.bigHeadingCell			{ 
+	color: #000000; 
+	font-family: verdana,arial,sans-serif;
+	font-weight: bold;
+	text-align: left;
+	font-size: 16px;  
+	}
+
+.normalCell			{
+	color: #000000;
+	background: #99cccc;
+	font-family: verdana,arial,sans-serif;
+	text-align: left;
+	font-size: 12px;
+	}
+
+.headerCell			{
+	color: #ffffff;
+	background: #330099;
+	font-family: verdana,arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+	}
+
+.headerCell2			{ 
+	color: #000000; 
+	font-family: verdana,arial,sans-serif;
+	font-weight: bold;
+	text-align: left;
+	font-size: 14px;  
+	}
+
+.tocCell			{
+	color: #000000;
+	background: #ffffff;
+	font-family: verdana,arial,sans-serif;
+	font-size: 12px;
+	text-align: left;
+        height: 18px;
+	}
+
+.dataCell			{ 
+	color: #000000; 
+	font-family: verdana,arial,sans-serif;
+	font-size: 12px;  
+	text-align: left;
+	}
+

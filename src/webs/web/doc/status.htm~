@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">	
+<link rel="stylesheet" sel="text/css" href="/styles.css">
+<title>How to use Online Help</title>
+<script src="/doc/help.js"></script>
+</head>
+
+<body topmargin=8 onload="cxtitle('Device and Port Status');">
+<p class=normaltext>
+Applet displays host utilization, DSP utilization, and port status.
+</p>
+
+<table cellpadding="1" cellspacing="2" border="0" width="578">
+	<tr><td colspan=3><hr></td></tr>
+	<tr>
+		<td colspan=2><b>Description</b></td>
+	</tr>
+	<tr bgcolor=#E0E0D0>
+		<td colspan=2 style='padding-left:50;'>&nbsp;<b>CPU</b></td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=#004000 align=center valign=middle><font color=white style='font-size:8pt;'>&nbsp;&nbsp;white&nbsp;&nbsp;</font></td>
+		<td width=100%>&nbsp;&nbsp;Host CPU utilization (%).</td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=#004000 align=center valign=middle><font color=lightgreen style='font-size:8pt;'>green</font></td>
+		<td>&nbsp;&nbsp;Used memory (MB).</td>
+	</tr>
+	<tr bgcolor=#E0E0D0>
+		<td colspan=2 style='padding-left:50;'>&nbsp;<b>DSP</b></td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=#004000 align=center valign=middle><font color=white style='font-size:8pt;'>white</font></td>
+		<td>&nbsp;&nbsp;DSP #0 utilization (%).</td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=#004000 align=center valign=middle><font color=lightgreen style='font-size:8pt;'>green</font></td>
+		<td>&nbsp;&nbsp;DSP #1 utilization (%).</td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=#004000 align=center valign=middle><font color=cyan style='font-size:8pt;'>cyan</font></td>
+		<td>&nbsp;&nbsp;DSP #1 utilization (%).</td>
+	</tr>
+	<tr bgcolor=#E0E0D0>
+		<td colspan=2 style='padding-left:50;'>&nbsp;<b>Ports</b></td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=black>&nbsp;</td>
+		<td>&nbsp;&nbsp;Line is down. No connection to ELU or DTS.</td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=red>&nbsp;</td>
+		<td>&nbsp;&nbsp;Line is up. ELU protocol is down.</td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=green>&nbsp;</td>
+		<td>&nbsp;&nbsp;Status of the port is OK.</td>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=blue>&nbsp;</td>
+		<td>&nbsp;&nbsp;Phone is in speech. Status is OK.</td>
+	</tr>
+	<tr bgcolor=#F0F0F0>
+		<td bgcolor=yellow>&nbsp;</td>
+		<td>&nbsp;&nbsp;The phone is in ringing state. Status is OK.</td>
+	</tr>
+
+</table>
+
+</body>
+</html>

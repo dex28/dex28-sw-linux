@@ -1,0 +1,63 @@
+#! /bin/sh
+
+TSTAMP=`date +%Y%m%d%H%M%S`
+UNAME=`uname -m`
+
+echo "Content-type: application/x-gzip-compressed"
+if [ "$UNAME" = "armv4tl" ]; then
+    echo "Content-Disposition: attachment;filename=\"DEX28-GExP_$TSTAMP.tgz\""
+else
+    echo "Content-Disposition: attachment;filename=\"DEX28-GE6P_$TSTAMP.tgz\""
+fi
+echo ""
+
+# backup all files that user can customize
+cp -a /etc/sysconfig/albatross/version /.dex28-config 2>/dev/null
+cat /etc/sysconfig/albatross/global >>/.dex28-config 2>/dev/null
+
+if [ "$UNAME" = "armv4tl" ]; then
+    ( cd /; tar cT /dev/stdin <<-EOF | gzip -9 );
+.dex28-config
+etc/shadow
+etc/hosts
+etc/resolv.conf
+etc/network/interfaces
+etc/rc.d/init.d/local
+etc/rc.d/init.d/services
+etc/sysconfig/hostname
+etc/sysconfig/basedate
+etc/sysconfig/ntp_servers
+etc/sysconfig/snmpd.conf
+etc/sysconfig/webs
+etc/sysconfig/albatross/ext-ports.cfg
+etc/sysconfig/albatross/gw-ports.cfg
+etc/sysconfig/albatross/users.cfg
+etc/sysconfig/albatross/mode
+etc/sysconfig/albatross/smbpasswd
+etc/sysconfig/albatross/smb.conf
+etc/xinetd.d/albatross
+etc/xinetd.d/telnet
+EOF
+
+else
+
+    ( cd /; tar cT - <<-EOF | gzip -9 );
+.dex28-config
+etc/hosts
+etc/resolv.conf
+etc/rc.d/rc.local
+etc/sysconfig/webs
+etc/sysconfig/network
+etc/sysconfig/network-scripts/ifcfg-eth0
+etc/sysconfig/albatross/ext-ports.cfg
+etc/sysconfig/albatross/gw-ports.cfg
+etc/sysconfig/albatross/users.cfg
+etc/sysconfig/albatross/mode
+etc/sysconfig/albatross/smb.conf
+etc/xinetd.d/albatross
+etc/xinetd.d/telnet
+EOF
+
+fi
+
+rm /.dex28-config 1>/dev/null 2>/dev/null

@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<title>Help System</title>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">	
+<link rel="stylesheet" sel="text/css" href="/styles.css">
+<script src="/doc/help.js"></script>
+</head>
+
+<body topmargin=8 onload="cxtitle('Configuration');">
+
+<h2 id="port">Port Settings</h2>
+
+<p class=normaltext>
+Page shows and enables port configuration paramaters:</p>
+<ul class=normaltext>
+	<li><B>Directory Number</B> - Directory number assigned to port.</li>
+	<li><B>Speech Compression Scheme</B>
+		<ul>
+			<li><b>G.711 A-Law</b></li>
+			<li><b>G.711 u-Law</b></li>
+			<li><b>G.726 ADPCM16</b></li>
+			<li><b>G.726 ADPCM24</b></li>
+		    <li><b>G.726 ADPCM32</b></li>
+		    <li><b>G.726 ADPCM48</b></li>
+		    <li><b>G.729 A</b></li>
+		    <li><b>G.729 AB</b></li>
+		</ul>
+	</li>
+	<li><B>Line Echo Canceller (LEC) Settings</B> - LEC length (from 32 to 128ms).</li>
+	<li><B>Adaptive Jitter Buffer</B> - jitter is the variation in the time between packets arriving, caused 
+		by network congestion, timing drift, or route changes. A jitter buffer can be used to 
+		handle jitter. Default value is 80 ms.</li>
+</ul>
+<p class=normaltext>
+The Unit Configuration page allows user to:
+	<ul class=normaltext>
+			<li>Save (changes),or</li>
+			<li>Reset all fields to default values</li>
+	</ul>
+
+
+<h3 id="user">User Management</h3>
+<p class=normaltext>
+	Page shows general information about users such as:
+<ul class=normaltext>
+	<li><B>Username</B> - Username or user ID</li>
+	<li><B>Password</B> - Password. You can change it and save by clicking on Save button.</li>
+	<li><B>Group</B> - Group which user belongs to. You can change it and save by clicking on Save 
+		button.</li>
+	<li><B>Disabled</B> - You can disable user. </li>
+</ul>
+
+<h3 id="auth">Authorizations for 'user'</h3>
+<p class=normaltext>
+	Page shows authorizatons for selected user.
+<ul class=normaltext>
+	<li><B>Directory Number</B> - Directory Number </li>
+	<li><B>Mode</B> - Is authorization for each Directory Number.</B>
+		<ul>
+			<li><b>User</b> - Ordinary user.</li>
+			<li><b>Admin</b> - Admin authorization (superuser).</li>
+			<li><b>Monitor</b> - Monitor authorization.</li>
+		</ul>
+	</li>
+</ul>
+
+
+</body>
+</html>
